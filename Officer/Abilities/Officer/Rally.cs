@@ -20,7 +20,7 @@ namespace Officer.Abilities
 {
     public static class RallyAbility
     {
-        private static readonly DefRepository Repo = EnableMain.Repo;
+        private static readonly DefRepository Repo = ModHandler.Repo;
         public static ApplyStatusAbilityDef GetOrCreate()
         {
             ApplyStatusAbilityDef Rally = (ApplyStatusAbilityDef)Repo.GetDef("0b2ed8a0-9349-49ad-862d-11ad0ef0958f");

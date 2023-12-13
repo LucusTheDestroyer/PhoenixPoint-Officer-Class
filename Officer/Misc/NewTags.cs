@@ -5,7 +5,7 @@ namespace Officer.Misc
 {
     public static class NewTags
     {
-        private static readonly DefRepository Repo = EnableMain.Repo;
+        private static readonly DefRepository Repo = ModHandler.Repo;
         
         public static ClassTagDef OfficerClassTag()
         {

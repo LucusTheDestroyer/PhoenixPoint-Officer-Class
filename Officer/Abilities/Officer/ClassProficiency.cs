@@ -12,7 +12,7 @@ namespace Officer.Abilities
 {
     public static class OfficerClassProficiency
     {
-        private static readonly DefRepository Repo = EnableMain.Repo;
+        private static readonly DefRepository Repo = ModHandler.Repo;
         public static ClassProficiencyAbilityDef GetOrCreate()
         {
             ClassProficiencyAbilityDef OfficerProficiency = (ClassProficiencyAbilityDef)Repo.GetDef("8f15bc0b-7f21-43fd-97e6-761ce151c3e6");
