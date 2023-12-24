@@ -14,6 +14,7 @@ namespace Officer
 	{
 		/// Config is accessible at any time, if any is declared.
 		public new OfficerConfig Config => (OfficerConfig)base.Config;
+		public static OfficerMain Main { get; private set; }
 
 		/// This property indicates if mod can be Safely Disabled from the game.
 		/// Safely sisabled mods can be reenabled again. Unsafely disabled mods will need game restart ot take effect.
@@ -41,6 +42,7 @@ namespace Officer
 			PhoenixGame game = GetGame();
 
 			/// Apply any general game modifications.
+			Main = this;
 		}
 
 		/// <summary>
