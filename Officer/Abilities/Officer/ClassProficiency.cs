@@ -28,11 +28,12 @@ namespace Officer.Abilities
                 OfficerProficiency.ClassTags = new GameTagsList
                 {
                     NewTags.OfficerClassTag(),
-                    (ItemTypeTagDef)Repo.GetDef("7a8a0a76-deb6-c004-3b5b-712eae0ad4a5") //"HandgunItem_TagDef"
+                    (ItemTypeTagDef)Repo.GetDef("87b91929-c816-97d4-4877-20b00fdf37b3"), //"PDWItem_TagDef"
+                    (ItemTypeTagDef)Repo.GetDef("7a8a0a76-deb6-c004-3b5b-712eae0ad4a5"), //"HandgunItem_TagDef"
                 };
                 OfficerProficiency.AbilityDefs = new AbilityDef[] 
                 {
-                    BonusWillPower(),
+                    // BonusWillPower(),
                 };
             }
             return OfficerProficiency;
