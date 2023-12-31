@@ -31,7 +31,7 @@ namespace Officer.NewDefs
         public void OnGameOver(TacticalLevelController controller)
         {
             List<TacticalActor> survivingApplicableActor = (from actor in this.TacticalActor.TacticalFaction.GetOwnedActors<TacticalActor>()
-            where actor.LevelProgression != null && actor.IsAlive && !actor.GameTags.Contains(CommonHelpers.GetSharedGameTags().VehicleTag) && !actor.GameTags.Contains(NewTags.OfficerClassTag())
+            where actor.LevelProgression != null && actor.IsAlive && !actor.GameTags.Contains(CommonHelpers.GetSharedGameTags().VehicleTag) && !actor.GameTags.Contains(Tags.OfficerClassTag())
             select actor).ToList<TacticalActor>();
             foreach (TacticalActor actor in survivingApplicableActor)
             {
