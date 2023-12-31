@@ -57,7 +57,7 @@ namespace Officer.Abilities
                     {
                         TargetStat = StatModificationTarget.Accuracy,
                         Modification = StatModificationType.Add,
-                        Value = 25f
+                        Value = 0.25f
                     },
                 };
             }
