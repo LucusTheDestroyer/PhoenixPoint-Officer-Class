@@ -2,6 +2,7 @@ using Base.Defs;
 using Base.Serialization.General;
 using PhoenixPoint.Tactical.Entities;
 using PhoenixPoint.Tactical.Entities.DamageKeywords;
+using PhoenixPoint.Tactical.Entities.Equipments;
 
 namespace Officer.NewDefs
 {
@@ -17,7 +18,16 @@ namespace Officer.NewDefs
         }
         protected override bool ProcessKeywordDataInternal(ref DamageAccumulation.TargetData data)
         {
-            this._accum.BodyPartMultiplier = this._value;
+            if(data == null)
+            {
+                data = this.GenerateTargetData();
+                return true;
+            }
+            if(data.Target as ItemSlot != null)
+            {
+                data.DamageResult.HealthDamage *= this._value;
+            }
+            // this._accum.BodyPartMultiplier = this._value;
             return true;
         }
     }
