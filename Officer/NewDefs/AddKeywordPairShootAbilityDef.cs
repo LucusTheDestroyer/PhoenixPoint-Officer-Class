@@ -1,12 +1,6 @@
 using Base.Serialization.General;
-using Base.Defs;
-using PhoenixPoint.Common.Entities;
-using PhoenixPoint.Tactical.Entities.Abilities; //ShootAbilityDefs are part of these
-using PhoenixPoint.Tactical.Entities.Equipments;
+using PhoenixPoint.Tactical.Entities.Abilities;
 using PhoenixPoint.Tactical.Entities.DamageKeywords;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using UnityEngine;
 
 namespace Officer.NewDefs 
