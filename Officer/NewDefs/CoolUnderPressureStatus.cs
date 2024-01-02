@@ -29,8 +29,16 @@ namespace Officer.NewDefs
                     return;
                 }
                 baseStat.RemoveStatModificationsWithSource(modification.Source, true);
-                StatModification AdjustedModification = modification.AccumulateModification(num);
-                baseStat.AddStatModification(AdjustedModification);
+                if(((int)modification.Modification) % 2 == 0) //Multiplication cases,
+                {
+                    float TotalModValue = 1 + num*modification.Value;
+                    baseStat.AddStatModification(new StatModification(modification.Modification, modification.StatName, TotalModValue, modification.Source, TotalModValue), true);
+                }
+                else //Addition cases, can simply Accumulate modification
+                {
+                    StatModification AdjustedModification = modification.AccumulateModification(num);
+                    baseStat.AddStatModification(AdjustedModification);
+                }
                 baseStat.ReapplyModifications();
             }
         }
@@ -61,7 +69,7 @@ namespace Officer.NewDefs
         {
             base.EndTurn();
             this.WPChangeSinceLastReset = 0;
-            
+            this.ApplyModification();
         }
         
         public override void OnUnapply()
