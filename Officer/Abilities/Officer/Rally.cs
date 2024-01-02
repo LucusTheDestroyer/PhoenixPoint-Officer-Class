@@ -5,12 +5,14 @@ using Base.Entities.Effects;
 using Base.Entities.Effects.ApplicationConditions;
 using Base.Entities.Statuses;
 using Base.UI;
+using HarmonyLib;
 using Officer.Misc;
 using PhoenixPoint.Common.Entities;
 using PhoenixPoint.Common.Entities.GameTags;
 using PhoenixPoint.Common.Entities.GameTagsTypes;
 using PhoenixPoint.Common.UI;
 using PhoenixPoint.Tactical.Entities.Abilities;
+using PhoenixPoint.Tactical.Entities.Animations;
 using PhoenixPoint.Tactical.Entities.Effects.ApplicationConditions;
 using PhoenixPoint.Tactical.Entities.Equipments;
 using PhoenixPoint.Tactical.Entities.Statuses;
@@ -21,35 +23,36 @@ namespace Officer.Abilities
     public static class RallyAbility
     {
         private static readonly DefRepository Repo = ModHandler.Repo;
+        private static readonly ApplyStatusAbilityDef Onslaught = (ApplyStatusAbilityDef)Repo.GetDef("175744da-5e1d-d1d4-58fb-b08d226b58f6"); //"DeterminedAdvance_AbilityDef"
         public static ApplyStatusAbilityDef GetOrCreate()
         {
             ApplyStatusAbilityDef Rally = (ApplyStatusAbilityDef)Repo.GetDef("0b2ed8a0-9349-49ad-862d-11ad0ef0958f");
             if (Rally == null)
             {
-                //"DeterminedAdvance_AbilityDef"
-                ApplyStatusAbilityDef Onslaught = (ApplyStatusAbilityDef)Repo.GetDef("175744da-5e1d-d1d4-58fb-b08d226b58f6");
-
                 Rally = Repo.CreateDef<ApplyStatusAbilityDef>("0b2ed8a0-9349-49ad-862d-11ad0ef0958f", Onslaught);
                 Rally.name = "Rally_ApplyStatusAbilityDef";
                 Rally.CharacterProgressionData = RallyProgression();
                 Rally.ViewElementDef = RallyVED();
+                Rally.UsesPerTurn = -1;
                 Rally.ActionPointCost = 0.25f;
                 Rally.WillPointCost = 3f;
-                Rally.StatusDef = RallyStatus(Onslaught.StatusDef as TacEffectStatusDef);
+                Rally.StatusDef = RallyStatus();
                 Rally.TargetApplicationConditions = new EffectConditionDef[]
                 {
-                    RallyConditions()
+                    RallyWPCondition(),
+                    RallyStatusCondition(),
                 };
+                AddAnims(Rally);
             }
             return Rally;
         }
 
-        private static TacEffectStatusDef RallyStatus(TacEffectStatusDef template)
+        private static TacEffectStatusDef RallyStatus()
         {
             TacEffectStatusDef Status = (TacEffectStatusDef)Repo.GetDef("be672117-c89e-4628-8af5-3c93a3a1ce9d");
             if (Status == null)
             {
-                Status = Repo.CreateDef<TacEffectStatusDef>("be672117-c89e-4628-8af5-3c93a3a1ce9d", template);
+                Status = Repo.CreateDef<TacEffectStatusDef>("be672117-c89e-4628-8af5-3c93a3a1ce9d", Onslaught.StatusDef as TacEffectStatusDef);
                 Status.name = "E_Status [Rally_ApplyStatusAbilityDef]";
                 Status.Visuals = RallyVED();
                 Status.EffectDef = RallyMultiEffect();
@@ -107,13 +110,13 @@ namespace Officer.Abilities
             return Immunity;
         }
 
-        private static StatThresholdEffectConditionDef RallyConditions()
+        private static StatThresholdEffectConditionDef RallyWPCondition()
         {
             StatThresholdEffectConditionDef Condition = (StatThresholdEffectConditionDef)Repo.GetDef("3095db18-3091-4530-8b5d-137c7ecbe8dd");
             if (Condition == null)
             {
                 Condition = Repo.CreateDef<StatThresholdEffectConditionDef>("3095db18-3091-4530-8b5d-137c7ecbe8dd");
-                Condition.name = "E_ApplicationConditions [Rally_ApplyStatusAbilityDef]";
+                Condition.name = "E_WillPointThreshold_ApplicationCondition [Rally_ApplyStatusAbilityDef]";
                 Condition.ThresholdCondition = ThresholdCondition.LesserThan;
                 Condition.StatName = "WillPoints";
                 Condition.Value = 1f;
@@ -122,6 +125,18 @@ namespace Officer.Abilities
             return Condition;
         }
 
+        private static ActorHasStatusEffectConditionDef RallyStatusCondition()
+        {
+            ActorHasStatusEffectConditionDef Condition = (ActorHasStatusEffectConditionDef)Repo.GetDef("112d9dc2-c330-4e54-a165-b5760e6bfe8a");
+            if (Condition == null)
+            {
+                Condition = Repo.CreateDef<ActorHasStatusEffectConditionDef>("112d9dc2-c330-4e54-a165-b5760e6bfe8a");
+                Condition.name = "E_NoRallyStatus_ApplicationCondition [Rally_ApplyStatusAbilityDef]";
+                Condition.StatusDef = RallyStatus();
+                Condition.HasStatus = false;
+            }
+            return Condition;
+        }
 
         private static AbilityCharacterProgressionDef RallyProgression()
         {
@@ -154,6 +169,19 @@ namespace Officer.Abilities
                 VED.Description = new LocalizedTextBind("RALLY_DESC");
             }
             return VED;
+        }
+
+        private static void AddAnims(AbilityDef ability)
+        {
+            TacActorSimpleAbilityAnimActionDef Rally0Hands = (TacActorSimpleAbilityAnimActionDef)Repo.GetDef("f3902bf4-f80f-dbb3-e946-1c17d4c119fa");
+            TacActorSimpleAbilityAnimActionDef Rally1Hands = (TacActorSimpleAbilityAnimActionDef)Repo.GetDef("7a8984ce-ce76-dbb2-d3e9-059eadf718fa");
+            TacActorSimpleAbilityAnimActionDef Rally2Hands = (TacActorSimpleAbilityAnimActionDef)Repo.GetDef("16452424-5a8f-dbb2-3949-c9f2546318fa");
+            TacActorSimpleAbilityAnimActionDef Rally2HandsHeavy = (TacActorSimpleAbilityAnimActionDef)Repo.GetDef("4b471de6-ab3e-dbb3-fb70-cbafe59219fa");
+
+            Rally0Hands.AbilityDefs = Rally0Hands.AbilityDefs.AddToArray(ability);
+            Rally1Hands.AbilityDefs = Rally1Hands.AbilityDefs.AddToArray(ability);
+            Rally2Hands.AbilityDefs = Rally2Hands.AbilityDefs.AddToArray(ability);
+            Rally2HandsHeavy.AbilityDefs = Rally2HandsHeavy.AbilityDefs.AddToArray(ability);
         }
     }
 }
