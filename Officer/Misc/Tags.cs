@@ -1,6 +1,11 @@
 using System.Linq;
+using Base.Core;
 using Base.Defs;
+using HarmonyLib;
+using Officer.Abilities;
+using PhoenixPoint.Common.Core;
 using PhoenixPoint.Common.Entities.GameTags;
+using PhoenixPoint.Common.Entities.GameTagsSharedData;
 using PhoenixPoint.Common.Entities.GameTagsTypes;
 using PhoenixPoint.Tactical.Entities.Weapons;
 
@@ -34,6 +39,13 @@ namespace Officer.Misc
                     weapon.CompatibleAmmunition[0].Tags.Add(OfficerClassTag());
 				}
 			}	
+        }
+
+        public static void OfficerToSharedGameTags()
+        {
+            // "SharedGameTagsDataDef"
+            SharedGameTagsDataDef SharedGameTags = GameUtl.GameComponent<SharedData>().SharedGameTags;
+            SharedGameTags.Specializations = SharedGameTags.Specializations.AddToArray(OfficerSpecialisation.GetOrCreate());
         }
     }
 }
