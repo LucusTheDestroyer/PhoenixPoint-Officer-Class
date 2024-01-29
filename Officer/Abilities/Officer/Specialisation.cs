@@ -73,12 +73,12 @@ namespace Officer.Abilities
                     },
                     new AbilityTrackSlot
                     {
-                        Ability = (ApplyStatusAbilityDef)Repo.GetDef("175744da-5e1d-d1d4-58fb-b08d226b58f6"), //"DeterminedAdvance_AbilityDef"
+                        Ability = Onslaught.GetAndUpdate(),
                         RequiresPrevAbility = false
                     },
                     new AbilityTrackSlot
                     {
-                        Ability = (ApplyStatusAbilityDef)Repo.GetDef("43d3e67f-da6a-b0e4-f8bf-3294ec5771b8"), //"MarkedForDeath_AbilityDef"
+                        Ability = MarkedForDeath(),
                         RequiresPrevAbility = false
                     },
                 };
@@ -99,6 +99,13 @@ namespace Officer.Abilities
                 VED.SmallIcon = VED.LargeIcon = Helper.CreateSpriteFromImageFile("OfficerIcon_NoOutline.png");
             }
             return VED;
+        }
+
+        private static ApplyStatusAbilityDef MarkedForDeath()
+        {
+            ApplyStatusAbilityDef MFD = (ApplyStatusAbilityDef)Repo.GetDef("43d3e67f-da6a-b0e4-f8bf-3294ec5771b8"); //"MarkedForDeath_AbilityDef"
+            MFD.CharacterProgressionData.SkillPointCost = 35;
+            return MFD;
         }
     }
 }
