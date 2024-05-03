@@ -2,6 +2,7 @@ using Base.Defs;
 using Base.Entities.Effects.ApplicationConditions;
 using PhoenixPoint.Tactical.Entities.Abilities;
 using PhoenixPoint.Tactical.Entities.Effects.ApplicationConditions;
+using UsefulMethods;
 
 namespace Officer.Abilities
 {
@@ -19,8 +20,9 @@ namespace Officer.Abilities
 
         public static ApplyStatusAbilityDef GetAndUpdate()
         {
-            DeterminedAdvance.CharacterProgressionData.SkillPointCost = 30;
+            DeterminedAdvance.CharacterProgressionData.SkillPointCost = 20;
             DeterminedAdvance.ViewElementDef.Description = new Base.UI.LocalizedTextBind("ONSLAUGHT_DESC");
+            DeterminedAdvance.ViewElementDef.SmallIcon = DeterminedAdvance.ViewElementDef.LargeIcon = Helper.CreateSpriteFromImageFile("NewOnslaught.png");
             DeterminedAdvance.UsesPerTurn = -1;
             DeterminedAdvance.TargetApplicationConditions = new EffectConditionDef[]
             {

@@ -160,13 +160,14 @@ namespace Officer.Abilities
             TacticalAbilityViewElementDef VED = (TacticalAbilityViewElementDef)Repo.GetDef("06737aab-7ce7-4197-b1e7-9ee19fba8996");
             if (VED == null)
             {
-                TacticalAbilityViewElementDef WarCryVED = (TacticalAbilityViewElementDef)Repo.GetDef("2b9ccba4-da27-3a43-92ab-511ef1dc4e11");
+                TacticalAbilityViewElementDef OnslaughtVED = (TacticalAbilityViewElementDef)Repo.GetDef("307c3728-271a-d043-aa88-9baa2512cff7"); //"E_View [DeterminedAdvance_AbilityDef]"
 
-                VED = Repo.CreateDef<TacticalAbilityViewElementDef>("06737aab-7ce7-4197-b1e7-9ee19fba8996", WarCryVED);
+                VED = Repo.CreateDef<TacticalAbilityViewElementDef>("06737aab-7ce7-4197-b1e7-9ee19fba8996", OnslaughtVED);
                 VED.name = "E_ViewElement [Rally_ApplyStatusAbilityDef]";
                 VED.Name = "Rally";
                 VED.DisplayName1 = new LocalizedTextBind("RALLY_NAME");
                 VED.Description = new LocalizedTextBind("RALLY_DESC");
+                // VED.SmallIcon = VED.LargeIcon = Helper.CreateSpriteFromImageFile("NewOnslaught.png");
             }
             return VED;
         }

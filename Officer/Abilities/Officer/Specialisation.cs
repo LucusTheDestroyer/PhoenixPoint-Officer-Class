@@ -63,17 +63,17 @@ namespace Officer.Abilities
                     },
                     new AbilityTrackSlot
                     {
-                        Ability = null,
+                        Ability = Onslaught.GetAndUpdate(),
+                        RequiresPrevAbility = false
+                    },
+                    new AbilityTrackSlot
+                    {
+                        Ability = ResilienceTraining.GetOrCreate(),
                         RequiresPrevAbility = false
                     },
                     new AbilityTrackSlot
                     {
                         Ability = FieldCommander.GetOrCreate(),
-                        RequiresPrevAbility = false
-                    },
-                    new AbilityTrackSlot
-                    {
-                        Ability = Onslaught.GetAndUpdate(),
                         RequiresPrevAbility = false
                     },
                     new AbilityTrackSlot
