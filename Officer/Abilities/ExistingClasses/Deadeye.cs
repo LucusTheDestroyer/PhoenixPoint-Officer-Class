@@ -8,6 +8,7 @@ using PhoenixPoint.Common.Entities.GameTagsTypes;
 using PhoenixPoint.Common.UI;
 using PhoenixPoint.Tactical.Entities.Abilities;
 using PhoenixPoint.Tactical.Entities.DamageKeywords;
+using PhoenixPoint.Tactical.Entities.Effects;
 using PhoenixPoint.Tactical.Entities.Statuses;
 using UsefulMethods;
 
@@ -18,12 +19,12 @@ namespace Officer.Abilities
         private static readonly DefRepository Repo = ModHandler.Repo;
         private static readonly ShootAbilityDef WeaponShoot = (ShootAbilityDef)Repo.GetDef("d3e8b389-069f-04c4-8aca-fb204c74fd37"); //"Weapon_ShootAbilityDef"
 
-        public static AddKeywordPairShootAbilityDef GetOrCreate()
+        public static ChangeMultiplierShootAbilityDef GetOrCreate()
         {
-            AddKeywordPairShootAbilityDef Deadeye = (AddKeywordPairShootAbilityDef)Repo.GetDef("114c8923-d798-40f7-85a4-d6d03d3e924f");
+            ChangeMultiplierShootAbilityDef Deadeye = (ChangeMultiplierShootAbilityDef)Repo.GetDef("114c8923-d798-40f7-85a4-d6d03d3e924f");
             if(Deadeye == null)
             {
-                Deadeye = Repo.CreateDef<AddKeywordPairShootAbilityDef>("114c8923-d798-40f7-85a4-d6d03d3e924f");
+                Deadeye = Repo.CreateDef<ChangeMultiplierShootAbilityDef>("114c8923-d798-40f7-85a4-d6d03d3e924f");
                 Helper.CopyFieldsByReflection(WeaponShoot, Deadeye);
                 Deadeye.name = "Deadeye_ShootAbilityDef";
                 Deadeye.CharacterProgressionData = DeadeyeProgression();
@@ -44,32 +45,34 @@ namespace Officer.Abilities
                 Deadeye.LogStats = true;
                 Deadeye.IsDefault = false;
                 Deadeye.ProjectileSpreadMultiplier = (2f/3f);
-                Deadeye.AdditionalDamageKeywords = new DamageKeywordPair[]
-                {
-                    new DamageKeywordPair
-                    {
-                        DamageKeywordDef = BodyPartMultiplierKeyword(),
-                        Value = 2f
-                    },
-                };
+                Deadeye.MultiplierType = DamageApplicationType.BodyPart;
+                Deadeye.Value = 1f;
+                // Deadeye.AdditionalDamageKeywords = new DamageKeywordPair[]
+                // {
+                //     new DamageKeywordPair
+                //     {
+                //         DamageKeywordDef = BodyPartMultiplierKeyword(),
+                //         Value = 1f
+                //     },
+                // };
             }
             return Deadeye;
         }
 
-        private static BodyPartMultiplierDamageKeywordDataDef BodyPartMultiplierKeyword()
-        {
-            BodyPartMultiplierDamageKeywordDataDef keyword = (BodyPartMultiplierDamageKeywordDataDef)Repo.GetDef("3b5ac1a4-5606-4bfe-8e49-e5c6b747651f");
-            if (keyword == null)
-            {
-                keyword = Repo.CreateDef<BodyPartMultiplierDamageKeywordDataDef>("3b5ac1a4-5606-4bfe-8e49-e5c6b747651f");
-                //"RemoveArmour_DamageKeywordDataDef"
-                RemoveArmourDamageKeywordDataDef WeakSpotKeyword = (RemoveArmourDamageKeywordDataDef)Repo.GetDef("f2ebef72-9e55-89f4-587e-e7f33ff0ec45");
-                Helper.CopyFieldsByReflection(WeakSpotKeyword, keyword);
-                keyword.name = "BodyPartMultiplier_DamageKeywordDataDef";
-                keyword.KeywordApplicationPriority = 995;
-            }
-            return keyword;
-        }
+        // private static BodyPartMultiplierDamageKeywordDataDef BodyPartMultiplierKeyword()
+        // {
+        //     BodyPartMultiplierDamageKeywordDataDef keyword = (BodyPartMultiplierDamageKeywordDataDef)Repo.GetDef("3b5ac1a4-5606-4bfe-8e49-e5c6b747651f");
+        //     if (keyword == null)
+        //     {
+        //         keyword = Repo.CreateDef<BodyPartMultiplierDamageKeywordDataDef>("3b5ac1a4-5606-4bfe-8e49-e5c6b747651f");
+        //         //"RemoveArmour_DamageKeywordDataDef"
+        //         RemoveArmourDamageKeywordDataDef WeakSpotKeyword = (RemoveArmourDamageKeywordDataDef)Repo.GetDef("f2ebef72-9e55-89f4-587e-e7f33ff0ec45");
+        //         Helper.CopyFieldsByReflection(WeakSpotKeyword, keyword);
+        //         keyword.name = "BodyPartMultiplier_DamageKeywordDataDef";
+        //         keyword.KeywordApplicationPriority = 995;
+        //     }
+        //     return keyword;
+        // }
 
         private static AbilityCharacterProgressionDef DeadeyeProgression()
         {
