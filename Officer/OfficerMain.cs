@@ -19,7 +19,7 @@ namespace Officer
 		/// This property indicates if mod can be Safely Disabled from the game.
 		/// Safely sisabled mods can be reenabled again. Unsafely disabled mods will need game restart ot take effect.
 		/// Unsafely disabled mods usually cannot revert thier changes in OnModDisabled
-		public override bool CanSafelyDisable => true;
+		public override bool CanSafelyDisable => false;
 
 		/// <summary>
 		/// Callback for when mod is enabled. Called even on game starup.
@@ -29,7 +29,7 @@ namespace Officer
 			/// All mod dependencies are accessible and always loaded.
 			int c = Dependencies.Count();
 			/// Mods have their own logger. Message through this logger will appear in game console and Unity log file.
-			Logger.LogInfo($"Say anything crab people-related.");
+			Logger.LogInfo($"Officer Class mod enabled.");
 			/// Metadata is whatever is written in meta.json
 			string v = MetaData.Version.ToString();
 			/// Game creates Harmony object for each mod. Accessible if needed.
@@ -43,6 +43,7 @@ namespace Officer
 
 			/// Apply any general game modifications.
 			Main = this;
+			ModHandler.ApplyChanges(this);
 		}
 
 		/// <summary>
@@ -59,6 +60,7 @@ namespace Officer
 		/// </summary>
 		public override void OnConfigChanged() {
 			/// Config is accessible at any time.
+			ModHandler.ImplementConfig();
 		}
 
 
@@ -88,7 +90,13 @@ namespace Officer
 		/// Usually game cleanup is executed.
 		/// </summary>
 		/// <param name="level">Level that ends.</param>
-		public override void OnLevelEnd(Level level) {
+		public override void OnLevelEnd(Level level) 
+		{
+			if (level.name.Contains("Home")) 
+			{
+				ModHandler.UpdateExistingClasses();
+				Logger.LogInfo("Existing Classes updated.");
+			}
 		}
 	}
 }
