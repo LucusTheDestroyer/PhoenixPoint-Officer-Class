@@ -4,10 +4,8 @@ using Base.Entities.Statuses;
 using Base.UI;
 using Officer.NewDefs;
 using PhoenixPoint.Common.Entities.GameTags;
-using PhoenixPoint.Common.Entities.GameTagsTypes;
 using PhoenixPoint.Common.UI;
 using PhoenixPoint.Tactical.Entities.Abilities;
-using PhoenixPoint.Tactical.Entities.DamageKeywords;
 using PhoenixPoint.Tactical.Entities.Effects;
 using PhoenixPoint.Tactical.Entities.Statuses;
 using UsefulMethods;
@@ -30,12 +28,11 @@ namespace Officer.Abilities
                 Deadeye.CharacterProgressionData = DeadeyeProgression();
                 Deadeye.ViewElementDef = DeadeyeVED();
                 Deadeye.InputAction = "";
+                Deadeye.UsableOnNonProficientEquipment = false;
                 Deadeye.WillPointCost = 5f;
                 Deadeye.EquipmentTags = new GameTagDef[]
                 {
-                    (ItemTypeTagDef)Repo.GetDef("2deb58cf-09fe-8f14-a8af-d60db67362f1"), //"SniperRifleItem_TagDef"
-                    (ItemTypeTagDef)Repo.GetDef("ed71eba2-3245-3614-8b5b-cbae1518732a"), //"CrossbowItem_TagDef"
-                    (ItemTypeTagDef)Repo.GetDef("7a8a0a76-deb6-c004-3b5b-712eae0ad4a5"), //"HandgunItem_TagDef"
+                    Misc.Tags.SingleShotWeaponTag()
                 };
                 Deadeye.DisablingStatuses = new StatusDef[]
                 {
@@ -47,32 +44,9 @@ namespace Officer.Abilities
                 Deadeye.ProjectileSpreadMultiplier = (2f/3f);
                 Deadeye.MultiplierType = DamageApplicationType.BodyPart;
                 Deadeye.Value = 1f;
-                // Deadeye.AdditionalDamageKeywords = new DamageKeywordPair[]
-                // {
-                //     new DamageKeywordPair
-                //     {
-                //         DamageKeywordDef = BodyPartMultiplierKeyword(),
-                //         Value = 1f
-                //     },
-                // };
             }
             return Deadeye;
         }
-
-        // private static BodyPartMultiplierDamageKeywordDataDef BodyPartMultiplierKeyword()
-        // {
-        //     BodyPartMultiplierDamageKeywordDataDef keyword = (BodyPartMultiplierDamageKeywordDataDef)Repo.GetDef("3b5ac1a4-5606-4bfe-8e49-e5c6b747651f");
-        //     if (keyword == null)
-        //     {
-        //         keyword = Repo.CreateDef<BodyPartMultiplierDamageKeywordDataDef>("3b5ac1a4-5606-4bfe-8e49-e5c6b747651f");
-        //         //"RemoveArmour_DamageKeywordDataDef"
-        //         RemoveArmourDamageKeywordDataDef WeakSpotKeyword = (RemoveArmourDamageKeywordDataDef)Repo.GetDef("f2ebef72-9e55-89f4-587e-e7f33ff0ec45");
-        //         Helper.CopyFieldsByReflection(WeakSpotKeyword, keyword);
-        //         keyword.name = "BodyPartMultiplier_DamageKeywordDataDef";
-        //         keyword.KeywordApplicationPriority = 995;
-        //     }
-        //     return keyword;
-        // }
 
         private static AbilityCharacterProgressionDef DeadeyeProgression()
         {
