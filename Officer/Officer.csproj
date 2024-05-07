@@ -42,6 +42,30 @@
       <HintPath>..\ModSDK\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\ModSDK\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Addressables">
+      <HintPath>..\ModSDK\Unity.Addressables.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>..\ModSDK\UnityEngine.ImageConversionModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="AK.Wwise.Unity.API.WwiseTypes">
+      <HintPath>..\ModSDK\AK.Wwise.Unity.API.WwiseTypes.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>..\ModSDK\UnityEngine.AnimationModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\ModSDK\UnityEngine.UI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="UnityEngine.CoreModule">
@@ -50,19 +74,84 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OfficerGeoscape.cs" />
+    <Compile Include="Abilities\ExistingClasses\CoolUnderPressure.cs" />
+    <Compile Include="Abilities\ExistingClasses\Deadeye.cs" />
+    <Compile Include="Abilities\Officer\ClassProficiency.cs" />
+    <Compile Include="Abilities\Officer\FieldCommander.cs" />
+    <Compile Include="Abilities\Officer\Onslaught.cs" />
+    <Compile Include="Abilities\Officer\Rally.cs" />
+    <Compile Include="Abilities\Officer\ResilienceTraining.cs" />
+    <Compile Include="Abilities\Officer\Specialisation.cs" />
+    <Compile Include="Abilities\Officer\TriggerDiscipline.cs" />
+    <Compile Include="HarmonyPatches\SelectSpecializationDataBind_Patches.cs" />
+    <Compile Include="HarmonyPatches\SpecializationSelectorController_Patches.cs" />
+    <Compile Include="HarmonyPatches\SpecializedAbilityTrackPopUpElement_Patches.cs" />
+    <Compile Include="HarmonyPatches\TacCharacterDef_Patches.cs" />
+    <Compile Include="HarmonyPatches\UIStateRosterDeployment_Patches.cs" />
+    <Compile Include="HarmonyPatches\UIStateShoot_Patches.cs" />
+    <Compile Include="Misc\OfficerSophia.cs" />
+    <Compile Include="Misc\PoseidonAmmo.cs" />
+    <Compile Include="Misc\PoseidonWeapon.cs" />
+    <Compile Include="Misc\Research.cs" />
+    <Compile Include="Misc\Tags.cs" />
+    <Compile Include="NewDefs\ActivatedBasesResearchRequirement.cs" />
+    <Compile Include="NewDefs\ActivatedBasesResearchRequirementDef.cs" />
+    <Compile Include="NewDefs\ApplyStatusAfterAbilityExecutedStatus.cs" />
+    <Compile Include="NewDefs\ApplyStatusAfterAbilityExecutedStatusDef.cs" />
+    <Compile Include="NewDefs\ChangeMultiplierShootAbility.cs" />
+    <Compile Include="NewDefs\ChangeMultiplierShootAbilityDef.cs" />
+    <Compile Include="NewDefs\CoolUnderPressureStatus.cs" />
+    <Compile Include="NewDefs\CoolUnderPressureStatusDef.cs" />
+    <Compile Include="NewDefs\EditBattleSummaryRewardsStatus.cs" />
+    <Compile Include="NewDefs\EditBattleSummaryRewardsStatusDef.cs" />
+    <Compile Include="Helper.cs" />
+    <Compile Include="ModHandler.cs" />
     <Compile Include="OfficerConfig.cs" />
     <Compile Include="OfficerMain.cs" />
-    <Compile Include="OfficerTactical.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Localization\OfficerMod.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="meta.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Content Include="..\Data\**"> 
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory> 
     </Content> 
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Textures\OfficerIcon_NoOutline.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Textures\Resistance.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Textures\TriggerDiscipline.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Textures\NewOnslaught.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Textures\FieldCommander.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Textures\ResilienceTraining.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Textures\CoolUnderPressure.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Textures\Deadeye.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Textures\P90.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Textures\P90ammo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
