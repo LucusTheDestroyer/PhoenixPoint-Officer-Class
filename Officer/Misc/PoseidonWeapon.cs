@@ -1,11 +1,6 @@
-using System.Collections.Generic;
 using Base.Defs;
 using Base.UI;
 using HarmonyLib;
-using PhoenixPoint.Common.Core;
-using PhoenixPoint.Common.Entities.GameTags;
-using PhoenixPoint.Common.Entities.GameTagsTypes;
-using PhoenixPoint.Common.Entities.Items;
 using PhoenixPoint.Common.Entities.Items.SkinData;
 using PhoenixPoint.Common.UI;
 using PhoenixPoint.Tactical.Entities.Animations;
@@ -35,7 +30,6 @@ namespace Officer.Misc
                 WeaponDef Gorgon = (WeaponDef)Repo.GetDef("1c053f71-38a0-9674-7821-8dffcdca49aa"); //"PX_LaserPDW_WeaponDef"
                 P90 = Repo.CreateDef<WeaponDef>("573bed0c-39e8-4f62-8953-d4af5996f238", Gorgon);
                 P90.name = "PX_StandardPDW_WeaponDef";
-                P90.Tags.Add(Tags.OfficerClassTag());
                 P90.SkinData = P90Skin();
                 P90.ViewElementDef = P90VED(Gorgon.ViewElementDef);
                 P90.ChargesMax = 50;
@@ -83,7 +77,7 @@ namespace Officer.Misc
                 VED.Name = "PX Standard PDW";
                 VED.DisplayName1 = new LocalizedTextBind("PX_PDW_NAME");
                 VED.Description = new LocalizedTextBind("PX_PDW_DESC");
-                VED.SmallIcon = VED.LargeIcon = VED.InventoryIcon = Helper.CreateSpriteFromImageFile("P90_Prototype.png");
+                VED.SmallIcon = VED.LargeIcon = VED.InventoryIcon = Helper.CreateSpriteFromImageFile("P90.png");
             }
             return VED;
         }
