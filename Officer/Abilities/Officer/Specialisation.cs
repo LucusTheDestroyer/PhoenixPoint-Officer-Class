@@ -1,11 +1,8 @@
 using Base.Defs;
-using Base.Entities.Abilities;
 using Base.UI;
 using Officer.Misc;
 using PhoenixPoint.Common.Entities;
 using PhoenixPoint.Common.Entities.Characters;
-using PhoenixPoint.Common.Entities.GameTags;
-using PhoenixPoint.Common.Entities.GameTagsTypes;
 using PhoenixPoint.Common.UI;
 using PhoenixPoint.Tactical.Entities.Abilities;
 using UsefulMethods;
