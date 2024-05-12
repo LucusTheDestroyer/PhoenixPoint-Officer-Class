@@ -20,14 +20,14 @@ ONSLAUGHT_DESC, Text,,Target ally within 10 tiles recovers 2 Action Points. Limi
 COOLUNDERPRESSURE_NAME, Text,,COOL UNDER PRESSURE,,,,,,,,
 COOLUNDERPRESSURE_DESC, Text,,"Gain 2% Accuracy and 1% Damage for each Will Point lost, up to a maximum of 15 stacks. Stacks reset at the end of the turn.",,,,,,,,
 DEADEYE_NAME, Text,,DEADEYE,,,,,,,,
-DEADEYE_DESC, Text,,"Take a shot with 50% bonus accuracy and double body part damage. Limited to single shot direct fire weapons.",,,,,,,,
+DEADEYE_DESC, Text,,"Take a shot with +50% accuracy and 2x body-part damage. Limited to single shot direct fire weapons.",,,,,,,,
 PX_PDW_NAME, Text,,Poseidon-90,,,,,,,,
 PX_PDW_DESC, Text,,Phoenix Standard PDW,,,,,,,,
 AMMO_PX_PDW_MAGAZINE_NAME, Text,,Poseidon-90 Magazine,,,,,,,,
 AMMO_PX_PDW_MAGAZINE_DESC, Text,,Phoenix Standard PDW Magazine,,,,,,,,
 PX_OFFICERTRAINING_NAME, Text,,Officer Class,,,,,,,,
-PX_OFFICERTRAINING_UNLOCK, Text,,"As the Phoenix Project expands its reach across the globe to combat the alien threat, the need for effective leadership on the battlefield has never been greater.",,,,,,,,
-PX_OFFICERTRAINING_COMPLETE, Text,,"The expansion of our territory and personnel has spread our leadership thin and necessitated the development of specialised training programmes designed to equip our soldiers with the skills and knowledge they need to lead on the battlefield. From strategic decision-making to morale management, our Officers will optimise the performance of their squads in every operation.
+PX_OFFICERTRAINING_UNLOCK, Text,,"As the Phoenix Project expands its reach across the globe, the need for effective battlefield leadership to combat the Pandoran menace has never been greater.",,,,,,,,
+PX_OFFICERTRAINING_COMPLETE, Text,,"The expansion of the Phoenix Project's operations has highlighted the need for improved leadership on the battlefield. Our response is the Officer training programme; a series of specialised courses that will equip eligible personnel with the tactical leadership skills required to command our forces on the ground. From squad-level decision making to morale management, our Officers will optimise the performance of the operatives under their command.
 
-Recognising the additional responsibilities these officers will bear, we have recommissioned the Personal Defence Weapon programme to arm our Officers with a weapon that is compact, maneuverable, and easy to use.",,,,,,,,
+In recognition of their additional responsibilities, we have recommissioned the Personal Defence Weapon programme: our Officers will be armed with a firearm that is compact, manoeuvrable, and easy to use.",,,,,,,,
 PX_OFFICERTRAINING_BENEFITS, Text,,Officer soldier class now available.,,,,,,,,
