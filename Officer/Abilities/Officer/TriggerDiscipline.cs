@@ -30,7 +30,7 @@ namespace Officer.Abilities
                 TriggerDiscipline.CharacterProgressionData = TDProgression();
                 TriggerDiscipline.TargetingDataDef = TDTargeting(AspidaPsyJammer.TargetingDataDef);
                 TriggerDiscipline.ViewElementDef = TDVED();
-
+                
                 TriggerDiscipline.StatusDef = DisciplineStatus();
                 TriggerDiscipline.TargetApplicationConditions = new EffectConditionDef[]{};
             }
@@ -57,7 +57,7 @@ namespace Officer.Abilities
                     {
                         TargetStat = StatModificationTarget.Accuracy,
                         Modification = StatModificationType.Add,
-                        Value = 0.25f
+                        Value = 0.20f
                     },
                 };
             }
@@ -89,7 +89,7 @@ namespace Officer.Abilities
                 Targeting = Repo.CreateDef<TacticalTargetingDataDef>("824506d3-0f8b-4feb-8871-8ad59a9d2566", template);
                 Targeting.name = "E_TargetingData [TriggerDiscipline_ApplyStatusAbilityDef]";
                 Targeting.Origin.TargetSelf = false;
-                Targeting.Origin.LineOfSight = LineOfSightType.InSight;
+                Targeting.Origin.LineOfSight = LineOfSightType.Ignore;
                 Targeting.Origin.FactionVisibility = LineOfSightType.Ignore;
             }
             return Targeting;
