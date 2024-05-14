@@ -32,6 +32,7 @@ namespace Officer.Abilities
                 Ability.ViewElementDef = ResilienceVED();
                 Ability.SceneViewElementDef = null;
                 Ability.SkillTags = new SkillTagDef[]{};
+                Ability.UsableOnNonInteractableActor = true;
                 Ability.StatusDef = ResilienceEffects();
                 Ability.CanApplyToOffMapTarget = true;
                 Ability.TargetApplicationConditions = new EffectConditionDef[]{};
