@@ -1,31 +1,44 @@
 using Base.Defs;
-using Base.Entities.Statuses;
 using Base.Serialization.General;
 using Officer.Misc;
 using PhoenixPoint.Common.Core;
 using PhoenixPoint.Tactical.Entities;
-using PhoenixPoint.Tactical.Entities.Statuses;
+using PhoenixPoint.Tactical.Entities.Abilities;
 using PhoenixPoint.Tactical.Levels;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Officer.NewDefs 
 {
-    [SerializeType(InheritCustomCreateFrom = typeof(TacStatus))]
-    public class EditBattleSummaryRewardsStatus : TacStatus
+    [SerializeType(InheritCustomCreateFrom = typeof(TacticalAbility))]
+    public class EditBattleSummaryRewardsAbility : TacticalAbility
     {
-        public EditBattleSummaryRewardsStatusDef EditBattleSummaryRewardsStatusDef
+        public EditBattleSummaryRewardsAbilityDef EditBattleSummaryRewardsAbilityDef
         {
             get
             {
-                return this.Def<EditBattleSummaryRewardsStatusDef>();
+                return this.Def<EditBattleSummaryRewardsAbilityDef>();
             }
         }
 
-        public override void OnApply(StatusComponent statusComponent)
+        public override bool HasValidTargets
         {
-            base.OnApply(statusComponent);
-            this.TacticalLevel.GameOverEvent += this.OnGameOver;
+            get
+            {
+                return true;
+            }
+        }
+
+        public override void AbilityAdded()
+        {
+            base.AbilityAdded();
+            this.TacticalActor.TacticalLevel.GameOverEvent += this.OnGameOver;
+        }
+
+        public override void AbilityRemovingStart()
+        {
+            base.AbilityRemovingStart();
+            this.TacticalActor.TacticalLevel.GameOverEvent -= this.OnGameOver;
         }
 
         public void OnGameOver(TacticalLevelController controller)
@@ -37,19 +50,13 @@ namespace Officer.NewDefs
             {
                 if(this.TacticalActor.TacticalFaction.State == TacFactionState.Won && controller.Difficulty != null)
                 {
-                    actor.LevelProgression.AddExperience(this.EditBattleSummaryRewardsStatusDef.Experience);
+                    actor.LevelProgression.AddExperience(this.EditBattleSummaryRewardsAbilityDef.Experience);
                     if (actor.LevelProgression.Def.UsesSkillPoints)
                     {
-                        actor.CharacterProgression.AddSkillPoints(this.EditBattleSummaryRewardsStatusDef.SkillPoints);
+                        actor.CharacterProgression.AddSkillPoints(this.EditBattleSummaryRewardsAbilityDef.SkillPoints);
                     }
                 }
             }
-        }
-
-        public override void OnUnapply()
-        {
-            base.OnUnapply();
-            this.TacticalLevel.GameOverEvent -= this.OnGameOver;
         }
     }
 }

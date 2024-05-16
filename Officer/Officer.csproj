@@ -102,8 +102,8 @@
     <Compile Include="NewDefs\ChangeMultiplierShootAbilityDef.cs" />
     <Compile Include="NewDefs\CoolUnderPressureStatus.cs" />
     <Compile Include="NewDefs\CoolUnderPressureStatusDef.cs" />
-    <Compile Include="NewDefs\EditBattleSummaryRewardsStatus.cs" />
-    <Compile Include="NewDefs\EditBattleSummaryRewardsStatusDef.cs" />
+    <Compile Include="NewDefs\EditBattleSummaryRewardsAbility.cs" />
+    <Compile Include="NewDefs\EditBattleSummaryRewardsAbilityDef.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="ModHandler.cs" />
     <Compile Include="OfficerConfig.cs" />

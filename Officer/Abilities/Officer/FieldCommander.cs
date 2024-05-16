@@ -14,33 +14,20 @@ namespace Officer.Abilities
         private static readonly DefRepository Repo = ModHandler.Repo;
         private static readonly ApplyStatusAbilityDef BloodLust = (ApplyStatusAbilityDef)Repo.GetDef("dfe93630-87f7-2774-1bc5-169deb082f7b"); //"BloodLust_AbilityDef"
 
-        public static ApplyStatusAbilityDef GetOrCreate()
+        public static EditBattleSummaryRewardsAbilityDef GetOrCreate()
         {
-            ApplyStatusAbilityDef FC = (ApplyStatusAbilityDef)Repo.GetDef("d64a0706-0867-4138-9632-9f0ea082bfdc");
+            EditBattleSummaryRewardsAbilityDef FC = (EditBattleSummaryRewardsAbilityDef)Repo.GetDef("d64a0706-0867-4138-9632-9f0ea082bfdc");
             if (FC == null)
             {
-                FC = Repo.CreateDef<ApplyStatusAbilityDef>("d64a0706-0867-4138-9632-9f0ea082bfdc", BloodLust);
+                FC = Repo.CreateDef<EditBattleSummaryRewardsAbilityDef>("d64a0706-0867-4138-9632-9f0ea082bfdc");
+                Helper.CopyFieldsByReflection(BloodLust, FC);
                 FC.name = "FieldCommander_AbilityDef";
                 FC.CharacterProgressionData = FCProgression();
                 FC.ViewElementDef = FCVED();
-                FC.StatusDef = FCStatus();
+                FC.Experience = 50;
+                FC.SkillPoints = 1;
             }
             return FC;
-        }
-
-        private static EditBattleSummaryRewardsStatusDef FCStatus()
-        {
-            EditBattleSummaryRewardsStatusDef status = (EditBattleSummaryRewardsStatusDef)Repo.GetDef("c7b58f8d-cc50-40b4-9026-dbef5675221b");
-            if(status == null)
-            {
-                status = Repo.CreateDef<EditBattleSummaryRewardsStatusDef>("c7b58f8d-cc50-40b4-9026-dbef5675221b");
-                Helper.CopyFieldsByReflection(BloodLust.StatusDef, status);
-                status.name = "E_Status [FieldCommander_AbilityDef]";
-                status.Visuals = FCVED();
-                status.Experience = 50;
-                status.SkillPoints = 1;
-            }
-            return status;
         }
 
         private static AbilityCharacterProgressionDef FCProgression()
