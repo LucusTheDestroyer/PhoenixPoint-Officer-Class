@@ -17,22 +17,24 @@ namespace Officer.Abilities
     {
         private static readonly DefRepository Repo = ModHandler.Repo;
 
+        //ApplyStatus_MindControlImmunity_AbilityDef
+        private static readonly ApplyStatusAbilityDef AspidaPsyJammer = (ApplyStatusAbilityDef)Repo.GetDef("cf5b7bba-e467-7aa4-88e4-1dd54d24f630");
+
         public static ApplyStatusAbilityDef GetOrCreate()
         {
             ApplyStatusAbilityDef TriggerDiscipline = (ApplyStatusAbilityDef)Repo.GetDef("6e43173e-df60-466b-98ef-d7ede5f6431b");
             if (TriggerDiscipline == null)
             {
-                //ApplyStatus_MindControlImmunity_AbilityDef
-                ApplyStatusAbilityDef AspidaPsyJammer = (ApplyStatusAbilityDef)Repo.GetDef("cf5b7bba-e467-7aa4-88e4-1dd54d24f630");
-
                 TriggerDiscipline = Repo.CreateDef<ApplyStatusAbilityDef>("6e43173e-df60-466b-98ef-d7ede5f6431b", AspidaPsyJammer);
                 TriggerDiscipline.name = "TriggerDiscipline_ApplyStatusAbilityDef";
                 TriggerDiscipline.CharacterProgressionData = TDProgression();
-                TriggerDiscipline.TargetingDataDef = TDTargeting(AspidaPsyJammer.TargetingDataDef);
+                TriggerDiscipline.TargetingDataDef = TDTargeting();
                 TriggerDiscipline.ViewElementDef = TDVED();
+                TriggerDiscipline.SceneViewElementDef = TDSceneView();
                 
                 TriggerDiscipline.StatusDef = DisciplineStatus();
                 TriggerDiscipline.TargetApplicationConditions = new EffectConditionDef[]{};
+                TriggerDiscipline.StatusSource = StatusSource.Actor;
             }
             return TriggerDiscipline;
         }
@@ -49,7 +51,7 @@ namespace Officer.Abilities
                 Status.name = "E_StatusDef [TriggerDiscipline_ApplyStatusAbilityDef]";
                 Status.EffectName = "Trigger Discipline";
                 Status.VisibleOnPassiveBar = true;
-                Status.VisibleOnHealthbar = TacStatusDef.HealthBarVisibility.VisibleWhenSelected;
+                Status.VisibleOnHealthbar = TacStatusDef.HealthBarVisibility.AlwaysVisible;
                 Status.Visuals = TDVED();
                 Status.StatModifications = new ItemStatModification[]
                 {
@@ -81,16 +83,18 @@ namespace Officer.Abilities
             return Progression;
         }
 
-        private static TacticalTargetingDataDef TDTargeting(TacticalTargetingDataDef template)
+        private static TacticalTargetingDataDef TDTargeting()
         {
             TacticalTargetingDataDef Targeting = (TacticalTargetingDataDef)Repo.GetDef("824506d3-0f8b-4feb-8871-8ad59a9d2566");
             if (Targeting == null)
             {
-                Targeting = Repo.CreateDef<TacticalTargetingDataDef>("824506d3-0f8b-4feb-8871-8ad59a9d2566", template);
+                Targeting = Repo.CreateDef<TacticalTargetingDataDef>("824506d3-0f8b-4feb-8871-8ad59a9d2566", AspidaPsyJammer.TargetingDataDef);
                 Targeting.name = "E_TargetingData [TriggerDiscipline_ApplyStatusAbilityDef]";
                 Targeting.Origin.TargetSelf = false;
                 Targeting.Origin.LineOfSight = LineOfSightType.Ignore;
                 Targeting.Origin.FactionVisibility = LineOfSightType.Ignore;
+                Targeting.Origin.Range = 7.1f;
+                Targeting.Target.Range = 5.9f;
             }
             return Targeting;
         }
@@ -100,9 +104,7 @@ namespace Officer.Abilities
             TacticalAbilityViewElementDef VED = (TacticalAbilityViewElementDef)Repo.GetDef("54952742-9e41-44c4-9335-4c226aa19547");
             if (VED == null)
             {
-                TacticalAbilityViewElementDef AspidaAuraVED = (TacticalAbilityViewElementDef)Repo.GetDef("48509dd0-c181-3c1f-e202-1652ab014d76");
-
-                VED = Repo.CreateDef<TacticalAbilityViewElementDef>("54952742-9e41-44c4-9335-4c226aa19547", AspidaAuraVED);
+                VED = Repo.CreateDef<TacticalAbilityViewElementDef>("54952742-9e41-44c4-9335-4c226aa19547", AspidaPsyJammer.ViewElementDef);
                 VED.name = "E_ViewElement [TriggerDiscipline_ApplyStatusAbilityDef]";
                 VED.Name = "TriggerDiscipline";
                 VED.DisplayName1 = new LocalizedTextBind("TRIGGERDISCIPLINE_NAME");
@@ -110,6 +112,21 @@ namespace Officer.Abilities
                 VED.SmallIcon = VED.LargeIcon = Helper.CreateSpriteFromImageFile("TriggerDiscipline.png");
             }
             return VED;
+        }
+
+        private static AreaOfEffectAbilitySceneViewDef TDSceneView()
+        {
+            AreaOfEffectAbilitySceneViewDef SceneView = (AreaOfEffectAbilitySceneViewDef)Repo.GetDef("dc57f31b-8d7e-44d7-99e1-daaacf750d98");
+            if (SceneView == null)
+            {
+                //"_Generic_PassiveAura_SceneViewElementDef"
+                AreaOfEffectAbilitySceneViewDef FriendlyAOE = (AreaOfEffectAbilitySceneViewDef)Repo.GetDef("e75f51e8-20cb-9804-8809-5730ca2cb00a"); 
+                SceneView = Repo.CreateDef<AreaOfEffectAbilitySceneViewDef>("dc57f31b-8d7e-44d7-99e1-daaacf750d98", FriendlyAOE);
+                SceneView.name = "E_AreaOfEffectSceneViewElementDef [TriggerDiscipline_ApplyStatusAbilityDef]";
+                // SceneView.TargetRadiusMarker = PhoenixPoint.Tactical.View.GroundMarkerType.AreaOfEffectAura;
+                SceneView.UseOriginData = false;
+            }
+            return SceneView;
         }
     }
 }
