@@ -23,17 +23,20 @@ namespace Officer.Misc
 
         public static void Implement()
         {
-            OfficerMain.Main.Logger.LogInfo("Implement Sophia called");
-			SophiaTut1.Data.Abilites = SophiaTut1.Data.Abilites.AddToArray(OfficerClassProficiency.GetOrCreate());
-			SophiaTut1.Data.GameTags = SophiaTut1.Data.GameTags.AddToArray(Tags.OfficerClassTag());
-
-            SophiaTut2.Data.Abilites = SophiaTut2.Data.Abilites.AddToArray(OfficerClassProficiency.GetOrCreate());
-			SophiaTut2.Data.GameTags = SophiaTut2.Data.GameTags.AddToArray(Tags.OfficerClassTag());
-
-            SophiaTut2.Data.EquipmentItems = new ItemDef[] { Poseidon90.GetOrCreate(), Cypher, Medkit };
-            SophiaTut2.Data.InventoryItems = new ItemDef[] {Poseidon90Ammo.P90Ammo};
+            if(!SophiaTut1.Data.GameTags.Contains(Tags.OfficerClassTag()))
+            {
+                SophiaTut1.Data.Abilites = SophiaTut1.Data.Abilites.AddToArray(OfficerClassProficiency.GetOrCreate());
+                SophiaTut1.Data.GameTags = SophiaTut1.Data.GameTags.AddToArray(Tags.OfficerClassTag());
+            }
+            if(!SophiaTut2.Data.GameTags.Contains(Tags.OfficerClassTag()))
+            {
+                SophiaTut2.Data.Abilites = SophiaTut2.Data.Abilites.AddToArray(OfficerClassProficiency.GetOrCreate());
+                SophiaTut2.Data.GameTags = SophiaTut2.Data.GameTags.AddToArray(Tags.OfficerClassTag());
+                SophiaTut2.Data.EquipmentItems = new ItemDef[] { Poseidon90.GetOrCreate(), Cypher, Medkit };
+                SophiaTut2.Data.InventoryItems = new ItemDef[] {Poseidon90Ammo.P90Ammo};
+            }
             
-            if(SophiaTFTV != null)
+            if(SophiaTFTV != null && !SophiaTFTV.Data.GameTags.Contains(Tags.OfficerClassTag()))
             {
                 OfficerMain.Main.Logger.LogInfo("SophiaTFTV not null. Ensuring changes are transferred");
                 SophiaTFTV.Data.Abilites = SophiaTFTV.Data.Abilites.AddToArray(OfficerClassProficiency.GetOrCreate());
@@ -57,7 +60,6 @@ namespace Officer.Misc
 
         public static void Revert()
         {
-            OfficerMain.Main.Logger.LogInfo("Revert Sophia called");
             SophiaTut1.Data.Abilites = SophiaTut1.Data.Abilites.Where(perk => perk != OfficerClassProficiency.GetOrCreate()).ToArray();
             SophiaTut1.Data.GameTags = SophiaTut1.Data.GameTags.Where(tag => tag != Tags.OfficerClassTag()).ToArray();
 

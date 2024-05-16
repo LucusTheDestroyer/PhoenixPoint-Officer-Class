@@ -59,6 +59,7 @@ namespace Officer
             {
                 OfficerClassProficiency.GetOrCreate().IsDominantClass = false;
             }
+            OfficerMain.Main.Logger.LogInfo("Config selection updated.");
         }
 
         public static void UpdateExistingClasses()
