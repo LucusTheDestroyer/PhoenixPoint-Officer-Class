@@ -21,6 +21,7 @@ namespace Officer.Abilities
         public static ApplyStatusAbilityDef GetAndUpdate()
         {
             DeterminedAdvance.CharacterProgressionData.SkillPointCost = 20;
+            DeterminedAdvance.TargetingDataDef.Origin.Range = 10.1f;
             DeterminedAdvance.ViewElementDef.Description = new Base.UI.LocalizedTextBind("ONSLAUGHT_DESC");
             DeterminedAdvance.ViewElementDef.SmallIcon = DeterminedAdvance.ViewElementDef.LargeIcon = Helper.CreateSpriteFromImageFile("NewOnslaught.png");
             DeterminedAdvance.UsesPerTurn = -1;
