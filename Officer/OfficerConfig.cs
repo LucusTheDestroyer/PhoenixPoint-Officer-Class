@@ -13,8 +13,10 @@ namespace Officer
 		/// Only public fields are serialized.
 		/// Supported types for in-game UI are:
 				
-		[ConfigField(text: "Officer Sophia", description: "Sets Sophia as an Officer on New Game start. REQUIRES GAME RESTART FOR CHANGES TO TAKE EFFECT")]
+		[ConfigField(text: "Officer Sophia", description: "Sets Sophia as an Officer on New Game start.")]
 		public bool OfficerSophia = true;
 
+		[ConfigField(text: "Make Officers a Dominant Class", description: "Hides the Primary class icon for Officers in tactical.")]
+		public bool DominantClass = false;
 	}
 }

@@ -51,6 +51,14 @@ namespace Officer
             {
                 Misc.OfficerSophia.Revert();
             }
+            if(Config.DominantClass)
+            {
+                OfficerClassProficiency.GetOrCreate().IsDominantClass = true;
+            }
+            else
+            {
+                OfficerClassProficiency.GetOrCreate().IsDominantClass = false;
+            }
         }
 
         public static void UpdateExistingClasses()
