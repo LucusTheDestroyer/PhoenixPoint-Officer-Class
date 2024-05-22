@@ -25,7 +25,7 @@ PX_PDW_NAME, Text,,Poseidon-90,,,,,,,,
 PX_PDW_DESC, Text,,Phoenix Standard PDW,,,,,,,,
 AMMO_PX_PDW_MAGAZINE_NAME, Text,,Poseidon-90 Magazine,,,,,,,,
 AMMO_PX_PDW_MAGAZINE_DESC, Text,,Phoenix Standard PDW Magazine,,,,,,,,
-PX_OFFICERTRAINING_NAME, Text,,Officer Class,,,,,,,,
+PX_OFFICERTRAINING_NAME, Text,,Officer Training Programme,,,,,,,,
 PX_OFFICERTRAINING_UNLOCK, Text,,"As the Phoenix Project expands its reach across the globe, the need for effective battlefield leadership to combat the Pandoran menace has never been greater.",,,,,,,,
 PX_OFFICERTRAINING_COMPLETE, Text,,"The expansion of the Phoenix Project's operations has highlighted the need for improved leadership on the battlefield. Our response is the Officer training programme; a series of specialised courses that will equip eligible personnel with the tactical leadership skills required to command our forces on the ground. From squad-level decision making to morale management, our Officers will optimise the performance of the operatives under their command.
 
