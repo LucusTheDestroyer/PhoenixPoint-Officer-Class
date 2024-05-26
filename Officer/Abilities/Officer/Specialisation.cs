@@ -98,7 +98,7 @@ namespace Officer.Abilities
             return VED;
         }
 
-        private static ApplyStatusAbilityDef MarkedForDeath()
+        public static ApplyStatusAbilityDef MarkedForDeath()
         {
             ApplyStatusAbilityDef MFD = (ApplyStatusAbilityDef)Repo.GetDef("43d3e67f-da6a-b0e4-f8bf-3294ec5771b8"); //"MarkedForDeath_AbilityDef"
             MFD.CharacterProgressionData.SkillPointCost = 35;

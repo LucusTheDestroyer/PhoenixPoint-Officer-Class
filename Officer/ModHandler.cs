@@ -68,6 +68,9 @@ namespace Officer
             AssaultTrack.AbilitiesByLevel[5].Ability = CoolUnderPressure.GetOrCreate();
             AbilityTrackDef SniperTrack = (AbilityTrackDef)Repo.GetDef("a9b75670-ddec-5222-b4c3-08124bb8751e"); //"E_AbilityTrack [SniperSpecializationDef]"
             SniperTrack.AbilitiesByLevel[6].Ability = Deadeye.GetOrCreate();
+            //Ensure both Onslaught and Marked for Death maintain their changes with TFTV;
+            Onslaught.GetAndUpdate();
+            OfficerSpecialisation.MarkedForDeath();
         }
     }
 }
