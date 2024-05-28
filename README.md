@@ -1,4 +1,4 @@
-# Phoenix Point Officer Class Mod (Steam Workshop)
+# Phoenix Point Officer Class Mod ([Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3250097289))
 
 This mod introduces a new Soldier class and accompanying weapon to the Phoenix Project's roster: The Officer Class. Designed as a tactical support unit, its abilities provide interesting squad-oriented utility rather than improvements to personal firepower. Despite its supporting role, a new PDW has been added to accompany the Officer and help it defend itself.
 
