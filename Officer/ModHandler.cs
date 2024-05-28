@@ -38,7 +38,7 @@ namespace Officer
             //Patch all Harmonies:
             HarmonyLib.Harmony harmony = (HarmonyLib.Harmony)instance.HarmonyInstance;
             harmony.PatchAll();
-            instance.Logger.LogInfo("Officer class mod Enabled");
+            instance.Logger.LogInfo("Officer class mod enabled.");
         }
 
         public static void ImplementConfig()

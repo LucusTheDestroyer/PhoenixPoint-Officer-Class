@@ -29,7 +29,7 @@ namespace Officer
 			/// All mod dependencies are accessible and always loaded.
 			int c = Dependencies.Count();
 			/// Mods have their own logger. Message through this logger will appear in game console and Unity log file.
-			Logger.LogInfo($"Officer Class mod enabled.");
+			Logger.LogInfo($"Enabling Officer Class mod...");
 			/// Metadata is whatever is written in meta.json
 			string v = MetaData.Version.ToString();
 			/// Game creates Harmony object for each mod. Accessible if needed.
