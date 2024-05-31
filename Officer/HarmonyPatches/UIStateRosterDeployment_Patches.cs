@@ -29,9 +29,9 @@ namespace Officer.Harmony
                     ____confirmationBox = GameUtl.GetMessageBox();
                 }
                 ____confirmationBox.ShowSimplePrompt("Only one Officer can be deployed into a mission", MessageBoxIcon.Information, MessageBoxButtons.OK, null, null, null);
+                property.DeployButton.SetInteractable(false);
+                property.DeployButton.ResetButtonAnimations();
             }
-            property.DeployButton.SetInteractable(!MultiOfficerFlag);
-            property.DeployButton.ResetButtonAnimations();
         }
     }
 }
