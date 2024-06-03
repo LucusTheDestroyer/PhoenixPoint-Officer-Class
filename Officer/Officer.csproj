@@ -87,6 +87,7 @@
     <Compile Include="HarmonyPatches\SpecializationSelectorController_Patches.cs" />
     <Compile Include="HarmonyPatches\SpecializedAbilityTrackPopUpElement_Patches.cs" />
     <Compile Include="HarmonyPatches\TacCharacterDef_Patches.cs" />
+    <Compile Include="HarmonyPatches\UIModuleManufacturing_Patches.cs" />
     <Compile Include="HarmonyPatches\UIStateRosterDeployment_Patches.cs" />
     <Compile Include="HarmonyPatches\UIStateShoot_Patches.cs" />
     <Compile Include="Misc\OfficerSophia.cs" />
