@@ -75,7 +75,7 @@ namespace Officer.Misc
                 SophiaTFTV.Data.Abilites = SophiaTFTV.Data.Abilites.Where(perk => perk != OfficerClassProficiency.GetOrCreate()).ToArray();
                 SophiaTFTV.Data.GameTags = SophiaTFTV.Data.GameTags.Where(tag => tag != Tags.OfficerClassTag()).ToArray();
 
-                SophiaTut2.Data.EquipmentItems = new ItemDef[] { Ares, Medkit, AresAmmo };
+                SophiaTFTV.Data.EquipmentItems = new ItemDef[] { Ares, Medkit, AresAmmo };
                 SophiaTFTV.Data.InventoryItems = new ItemDef[] {};
             }
 
