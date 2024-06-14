@@ -51,7 +51,7 @@ namespace Officer.Abilities
                 Progression.RequiredStrength = 0;
                 Progression.RequiredWill = 0;
                 Progression.RequiredSpeed = 0;
-                Progression.SkillPointCost = 25;
+                Progression.SkillPointCost = 30;
                 Progression.MutagenCost = 25;
                 Progression.PersonalTrackTags = new GameTagDef[]{};
             }
@@ -148,7 +148,8 @@ namespace Officer.Abilities
                 // OnRecover.VisibleOnHealthbar = TacStatusDef.HealthBarVisibility.Hidden;
                 // OnRecover.Visuals = null;
                 OnRecover.RequiredAbility = Recover;
-                OnRecover.StatusToApply = AdditionalStatuses();
+                // OnRecover.StatusToApply = AdditionalStatuses();
+                OnRecover.StatusToApply = BodyPartHealingStatus();
             }
             return OnRecover;
         }
