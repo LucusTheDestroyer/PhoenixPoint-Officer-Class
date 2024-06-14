@@ -65,12 +65,12 @@ namespace Officer.Abilities
                     },
                     new AbilityTrackSlot
                     {
-                        Ability = ResilienceTraining.GetOrCreate(),
+                        Ability = FieldCommander.GetOrCreate(),
                         RequiresPrevAbility = false
                     },
                     new AbilityTrackSlot
                     {
-                        Ability = FieldCommander.GetOrCreate(),
+                        Ability = ResilienceTraining.GetOrCreate(),
                         RequiresPrevAbility = false
                     },
                     new AbilityTrackSlot

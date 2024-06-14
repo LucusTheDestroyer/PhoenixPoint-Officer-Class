@@ -40,7 +40,7 @@ namespace Officer.Abilities
                 Progression.RequiredStrength = 0;
                 Progression.RequiredWill = 0;
                 Progression.RequiredSpeed = 0;
-                Progression.SkillPointCost = 30;
+                Progression.SkillPointCost = 25;
                 Progression.MutagenCost = 30;
                 Progression.PersonalTrackTags = new GameTagDef[]{};
             }
