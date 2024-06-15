@@ -33,6 +33,12 @@ namespace Officer.NewDefs
             this.RemoveModifier();
         }
 
+        public override void EndTurn()
+        {
+            base.EndTurn();
+            this.RemoveModifier();
+        }
+
         private void OnGameOver(TacticalLevelController controller)
         {
             this.RemoveModifier();
