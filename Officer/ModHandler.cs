@@ -1,12 +1,14 @@
-using PhoenixPoint.Modding;
-using System.IO;
-using PhoenixPoint.Tactical.Entities.DamageKeywords;
 using Base.Core;
-using PhoenixPoint.Common.Core;
 using Base.Defs;
-using UsefulMethods;
-using PhoenixPoint.Common.Entities.Characters;
+using Base.Entities.Statuses;
+using HarmonyLib;
 using Officer.Abilities;
+using PhoenixPoint.Common.Core;
+using PhoenixPoint.Common.Entities.Characters;
+using PhoenixPoint.Modding;
+using PhoenixPoint.Tactical.Entities.DamageKeywords;
+using System.IO;
+using UsefulMethods;
 
 namespace Officer
 {
@@ -68,6 +70,12 @@ namespace Officer
             AssaultTrack.AbilitiesByLevel[5].Ability = CoolUnderPressure.GetOrCreate();
             AbilityTrackDef SniperTrack = (AbilityTrackDef)Repo.GetDef("a9b75670-ddec-5222-b4c3-08124bb8751e"); //"E_AbilityTrack [SniperSpecializationDef]"
             SniperTrack.AbilitiesByLevel[6].Ability = Deadeye.GetOrCreate();
+            //Get BC QuickAim and add it to Deadeye disabling statuses in case TFTV is active:
+            StatusDef BC_QAStatus = (StatusDef)Repo.GetDef("c60511db-2785-4932-8654-086adc8e9e1b"); //Status for "BC_QuickAim_AbilityDef"
+            if(BC_QAStatus != null) //Status for "BC_QuickAim_AbilityDef"
+            {
+                Deadeye.GetOrCreate().DisablingStatuses = Deadeye.GetOrCreate().DisablingStatuses.AddToArray(BC_QAStatus);
+            }
             //Ensure both Onslaught and Marked for Death maintain their changes with TFTV;
             Onslaught.GetAndUpdate();
             OfficerSpecialisation.MarkedForDeath();
