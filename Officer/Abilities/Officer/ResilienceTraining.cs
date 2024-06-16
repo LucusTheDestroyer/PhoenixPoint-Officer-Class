@@ -129,7 +129,7 @@ namespace Officer.Abilities
             return DiscountStatus;
         }
 
-        private static ApplyStatusAfterAbilityExecutedStatusDef OnRecoverActivatedStatus()
+        public static ApplyStatusAfterAbilityExecutedStatusDef OnRecoverActivatedStatus()
         {
             ApplyStatusAfterAbilityExecutedStatusDef OnRecover = (ApplyStatusAfterAbilityExecutedStatusDef)Repo.GetDef("72a02af0-25aa-4a22-a4aa-fa5623abb7be");
             if (OnRecover == null)

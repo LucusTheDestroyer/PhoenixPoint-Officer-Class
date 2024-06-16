@@ -83,6 +83,7 @@
     <Compile Include="Abilities\Officer\ResilienceTraining.cs" />
     <Compile Include="Abilities\Officer\Specialisation.cs" />
     <Compile Include="Abilities\Officer\TriggerDiscipline.cs" />
+    <Compile Include="HarmonyPatches\RecoverWillAbility_Patches.cs" />
     <Compile Include="HarmonyPatches\SelectSpecializationDataBind_Patches.cs" />
     <Compile Include="HarmonyPatches\SpecializationSelectorController_Patches.cs" />
     <Compile Include="HarmonyPatches\SpecializedAbilityTrackPopUpElement_Patches.cs" />
