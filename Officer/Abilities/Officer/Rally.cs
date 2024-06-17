@@ -49,6 +49,7 @@ namespace Officer.Abilities
                 Status.name = "E_Status [Rally_ApplyStatusAbilityDef]";
                 Status.Visuals = RallyVED();
                 Status.EffectDef = RallyMultiEffect();
+                Status.ApplyOnTurnStart = true;
             }
             return Status;
         }
@@ -98,7 +99,10 @@ namespace Officer.Abilities
                 Immunity = Repo.CreateDef<StatusEffectDef>("122d1fd9-7849-421f-927e-2552d2a7fcd8");
                 Immunity.name = "E_ApplyEffect [Rally_ApplyStatusAbilityDef]";
                 Immunity.ApplicationConditions = new EffectConditionDef[]{};
-                Immunity.StatusDef = (DamageMultiplierStatusDef)Repo.GetDef("c8a493c7-e0cb-87a4-c97f-9c1ec28dbf09"); //"PanicImmunity_StatusDef"
+                DamageMultiplierStatusDef PanicImmunity = (DamageMultiplierStatusDef)Repo.GetDef("c8a493c7-e0cb-87a4-c97f-9c1ec28dbf09"); //"PanicImmunity_StatusDef"
+                PanicImmunity.SingleInstance = false;
+                PanicImmunity.StackMultipleStatusesAsSingleIcon = true;
+                Immunity.StatusDef = PanicImmunity;
             }
             return Immunity;
         }
