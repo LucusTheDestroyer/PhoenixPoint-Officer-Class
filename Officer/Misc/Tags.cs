@@ -65,7 +65,7 @@ namespace Officer.Misc
                     if(!weapon.Tags.Contains(OfficerClassTag()))
                     {
                         weapon.Tags.Add(OfficerClassTag());
-				        if (weapon.CompatibleAmmunition.Count() > 0) 
+				        if (weapon.CompatibleAmmunition.Count() > 0 && !weapon.CompatibleAmmunition[0].Tags.Contains(OfficerClassTag())) 
                         {
                             weapon.CompatibleAmmunition[0].Tags.Add(OfficerClassTag());
 				        }
