@@ -125,8 +125,9 @@ namespace Officer.Misc
             ResearchViewElementDef VED = (ResearchViewElementDef)Repo.GetDef("c05a2d88-5b0a-4954-847b-ede6ab158e6a");
             if (VED == null)
             {
-                ResearchViewElementDef template = (ResearchViewElementDef)Repo.GetDef("e9845ae2-7228-e105-9659-188fd3487ae4"); //NJ_Training_ViewElementDef
-                VED = Repo.CreateDef<ResearchViewElementDef>("c05a2d88-5b0a-4954-847b-ede6ab158e6a", template);
+                ResearchDef NJTraining = (ResearchDef)Repo.GetDef("0d4f1855-2957-34b9-211b-d36bac13c631"); //NJ_Training_ResearchDef
+                // ResearchViewElementDef template = (ResearchViewElementDef)Repo.GetDef("e9845ae2-7228-e105-9659-188fd3487ae4"); //NJ_Training_ViewElementDef
+                VED = Repo.CreateDef<ResearchViewElementDef>("c05a2d88-5b0a-4954-847b-ede6ab158e6a", NJTraining.ViewElementDef);
                 VED.name = "E_ViewElement [PX_OfficerTraining_ResearchDef]";
                 VED.DisplayName1 = new LocalizedTextBind("PX_OFFICERTRAINING_NAME");
                 VED.RevealText = new LocalizedTextBind("");
