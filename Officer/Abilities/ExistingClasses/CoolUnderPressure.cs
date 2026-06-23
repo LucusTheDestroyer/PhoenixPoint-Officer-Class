@@ -41,11 +41,11 @@ namespace Officer.Abilities
                 Status.DurationTurns = -1;
                 Status.ExpireOnEndOfTurn = true;
                 Status.Visuals = CUPVED();
-                Status.MaxStacks = 15;
+                Status.MaxStacks = 10;
                 Status.StatsToBuff = new StatModification[]
                 {
-                    new StatModification(StatModificationType.Add, "Accuracy", 0.02f, Status, 0.02f),
-                    new StatModification(StatModificationType.MultiplyRestrictedToBounds, "BonusAttackDamage", 0.01f, Status, 0.01f),
+                    new StatModification(StatModificationType.Add, "Accuracy", 0.03f, Status, 0.03f),
+                    new StatModification(StatModificationType.MultiplyRestrictedToBounds, "BonusAttackDamage", 0.02f, Status, 0.02f),
                 };
             }
             return Status;
