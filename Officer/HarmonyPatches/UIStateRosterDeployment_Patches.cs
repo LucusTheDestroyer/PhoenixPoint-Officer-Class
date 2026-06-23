@@ -13,10 +13,10 @@ using Officer.Misc;
 
 namespace Officer.Harmony 
 {
-    [HarmonyPatch(typeof(UIStateRosterDeployment), "CheckForDeployment", new Type[] {typeof(IEnumerable<GeoCharacter>)})]
+    [HarmonyPatch(typeof(UIStateRosterDeployment), "CheckForDeployment", new Type[] {typeof(List<GeoCharacter>)})]
     public static class PreventMissionLaunch_Patch
     {
-        public static void Postfix(UIStateRosterDeployment __instance, IEnumerable<GeoCharacter> squad, MessageBox ____confirmationBox)
+        public static void Postfix(UIStateRosterDeployment __instance, List<GeoCharacter> squad, MessageBox ____confirmationBox)
         {
             var propertyInfo = __instance.GetType().GetProperty("_missionBriefingModule", BindingFlags.NonPublic | BindingFlags.Instance);
             UIModuleDeploymentMissionBriefing property = propertyInfo.GetValue(__instance) as UIModuleDeploymentMissionBriefing;
