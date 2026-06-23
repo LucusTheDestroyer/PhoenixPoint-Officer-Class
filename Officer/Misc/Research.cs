@@ -113,7 +113,7 @@ namespace Officer.Misc
                 Requirement = Repo.CreateDef<ActivatedBasesResearchRequirementDef>("cd20e564-6c08-4ccc-8f8a-a0ffd8955a24");
                 Requirement.name = "E_ActivatedBasesRequirement [PX_OfficerTraining_ResearchDef]";
                 Requirement.RequirementText = new LocalizedTextBind("");
-                Requirement.TotalValue = 3;
+                Requirement.TotalValue = 2;
                 Requirement.IsRetroactive = false;
                 Requirement.Id = "";
             }
