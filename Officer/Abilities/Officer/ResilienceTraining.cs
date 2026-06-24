@@ -41,6 +41,34 @@ namespace Officer.Abilities
             return Ability;
         }
 
+        public static void UpdateConfigEffects(OfficerConfig config)
+        {
+            ApplyStatusAbilityDef ResilienceTraining = GetOrCreate();
+            MultiStatusDef SecondaryEffects = AdditionalStatuses();
+            switch(config.SecondaryResilienceEffect)
+            {
+                case OfficerConfig.ResilienceEffects.None:
+                    ResilienceTraining.StatusDef = RecoverDiscountStatus();
+                    ResilienceTraining.ViewElementDef.Description = new  LocalizedTextBind("RESILIENCETRAINING_NONE");
+                    break;
+                case OfficerConfig.ResilienceEffects.Damage_Resistance:
+                    ResilienceTraining.StatusDef = ResilienceEffects();
+                    ResilienceTraining.ViewElementDef.Description = new  LocalizedTextBind("RESILIENCETRAINING_RES");
+                    SecondaryEffects.Statuses = new StatusDef[]{DamageResistanceStatus()};
+                    break;
+                case OfficerConfig.ResilienceEffects.Restore_Parts:
+                    ResilienceTraining.StatusDef = ResilienceEffects();
+                    ResilienceTraining.ViewElementDef.Description = new  LocalizedTextBind("RESILIENCETRAINING_HEAL");
+                    SecondaryEffects.Statuses = new StatusDef[]{BodyPartHealingStatus()};
+                    break;
+                case OfficerConfig.ResilienceEffects.Both:
+                    ResilienceTraining.StatusDef = ResilienceEffects();
+                    ResilienceTraining.ViewElementDef.Description = new LocalizedTextBind("RESILIENCETRAINING_BOTH");
+                    SecondaryEffects.Statuses = new StatusDef[]{DamageResistanceStatus(), BodyPartHealingStatus()};
+                    break;
+            }
+        }
+
         private static AbilityCharacterProgressionDef ResilienceProgression()
         {
             AbilityCharacterProgressionDef Progression = (AbilityCharacterProgressionDef)Repo.GetDef("42231711-1b9a-43bd-835e-0e5d9ac66ba7");
@@ -148,8 +176,8 @@ namespace Officer.Abilities
                 // OnRecover.VisibleOnHealthbar = TacStatusDef.HealthBarVisibility.Hidden;
                 // OnRecover.Visuals = null;
                 OnRecover.RequiredAbility = Recover;
-                // OnRecover.StatusToApply = AdditionalStatuses();
-                OnRecover.StatusToApply = BodyPartHealingStatus();
+                OnRecover.StatusToApply = AdditionalStatuses();
+                // OnRecover.StatusToApply = BodyPartHealingStatus();
             }
             return OnRecover;
         }

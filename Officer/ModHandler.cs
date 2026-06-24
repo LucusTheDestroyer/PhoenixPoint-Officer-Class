@@ -61,6 +61,7 @@ namespace Officer
             {
                 OfficerClassProficiency.GetOrCreate().IsDominantClass = false;
             }
+            ResilienceTraining.UpdateConfigEffects(Config);
             OfficerMain.Main.Logger.LogInfo("Config selection updated.");
         }
 
