@@ -13,7 +13,7 @@ This mod should be compatible with all other mods on the workshop, **including T
 While the class draws some parallels to its Long War 2 equivalent, the original motivation behind it was to re-balance some of the game's existing support abilities without removing them completely. I give more information on this, alongside answering some other potential questions about the mod in the [FAQ on the Workshop page.](https://steamcommunity.com/workshop/filedetails/discussion/3250097289/4326349337176496186/)
 
 ### Acknowledgements
-First and foremost, a very special thank you to my co-creator, LillyRike, who designed and drew the majority of the new icons used in this mod (excluding those used for Onslaught and Deadeye). All rights to these icons belong to her only. If you'd like to support her work or commission her for your own projects, [check out her info page here.](https://lillyrike.carrd.co/)
+First and foremost, a very special thank you to my co-creator, LillyRike, who designed and drew the majority of the new icons used in this mod (excluding those used for Onslaught and Deadeye). All rights to these icons belong to her only. If you'd like to support her work or commission her for your own projects, [check out her info page here.](https://revlilith.carrd.co/)
 
 The PDW added by this mod is an unused asset buried in the original game's files, thus all rights to the weapon's model and textures belong to Snapshot Games.
 
